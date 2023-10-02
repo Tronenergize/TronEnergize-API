@@ -69,7 +69,10 @@ GET /api/v1/market
 This endpoint allows anyone to get a list of all orders
 
 **Parameters:**
-NONE
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+buyer | STRING | NO |  Resource purchase address
+receiver | STRING | NO |  Resource receiving address
 
 **Response:**
 ```javascript
@@ -84,7 +87,8 @@ NONE
         "price": "45 SUN/Day", 
         "apy": "20%", 
         "duration": "7 days", 
-        "active": true, 
+        "active": true,
+        "status": "filled",
         "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
       }
       ...
@@ -97,6 +101,35 @@ NONE
 POST /api/v1/neworder
 ```
 
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+buyer | STRING | YES |  Resource purchase address
+receiver | STRING | YES |  Resource receiving address
+amount | integer | YES |  Energy amount in SUN
+price | integer | YES |  
+duration | integer | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data": [
+      {
+        "id": 787, 
+        "payout": 77000000, 
+        "stake": 770000000, 
+        "energy": 1000000, 
+        "price": "45 SUN/Day", 
+        "apy": "20%", 
+        "duration": "7 days", 
+        "active": true,
+        "status": "new",
+        "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
+      }
+      ...
+    ]
+```
 
 ###  Status of order.
 ```
@@ -112,8 +145,16 @@ orderId | STRING | YES |  Order Id.
 **Response:**
 ```javascript
 {
+  "id": 787, 
+  "payout": 77000000, 
+  "stake": 770000000, 
+  "energy": 1000000, 
+  "price": "45 SUN/Day", 
+  "apy": "20%", 
+  "duration": "7 days", 
+  "active": true,
   "status": "filled",
-
+  "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
 }
 ```
 
