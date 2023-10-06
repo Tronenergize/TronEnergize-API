@@ -159,7 +159,7 @@ This endpoint returns the status ('active', 'filled', 'canceled') of order.
 **Parameters:**
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-orderId | STRING | YES |  Order Id.
+orderid | STRING | YES |  Order Id.
 
 **Response:**
 ```javascript
