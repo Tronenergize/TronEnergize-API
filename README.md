@@ -3,6 +3,7 @@
 
 ## General API Information
 * The base endpoint is: **https://tronenergize.com/**
+* The nile TESTNET endpoint is: **https://nile.tronenergize.com/**
 * All endpoints return either a JSON object or array.
 * Data is returned in **ascending** order. Oldest first, newest last.
 * All time and timestamp related fields are in **seconds**.
@@ -66,13 +67,10 @@ NONE
 ```
 GET /api/v1/market
 ```
-This endpoint allows anyone to get a list of all orders
+This endpoint allows anyone to get a list of all active orders
 
 **Parameters:**
-Name | Type | Mandatory | Description
------------- | ------------ | ------------ | ------------
-buyer | STRING | NO |  Resource purchase address
-receiver | STRING | NO |  Resource receiving address
+NONE
 
 **Response:**
 ```javascript
@@ -81,14 +79,13 @@ receiver | STRING | NO |  Resource receiving address
   "data": [
       {
         "id": 787, 
-        "payout": 77000000, 
-        "stake": 770000000, 
+        "payout": 777.5, 
+        "stake": 77000, 
         "energy": 1000000, 
         "price": "45 SUN/Day", 
-        "apy": "20%", 
-        "duration": "7 days", 
-        "active": true,
-        "status": "filled",
+        "apy": "77%", 
+        "duration": "7 days",
+        "rawduration": 201600,
         "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
       }
       ...
@@ -96,6 +93,28 @@ receiver | STRING | NO |  Resource receiving address
 ```
 
 ## Trading endpoints
+### Create unsigned RAW transaction for BUY Order.
+```
+GET /api/v1/neworder
+```
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+buyer | STRING | YES |  Resource purchase address
+energyamount | integer | YES |  Energy amount in SUN
+price | integer | YES |  Minimum 35
+duration | STRING | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data":{"visible": false, "txID": "6debe75130870086575f90792f.. ..f8aa9b031"},
+  "amount": 1.28}
+}
+```
+
 ### Create Order.
 ```
 POST /api/v1/neworder
@@ -108,7 +127,8 @@ buyer | STRING | YES |  Resource purchase address
 receiver | STRING | YES |  Resource receiving address
 amount | integer | YES |  Energy amount in SUN
 price | integer | YES |  
-duration | integer | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
+duration | STRING | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
+txid | STRING | YES |  Signed and Broadcasted Transaction Hash
 
 **Response:**
 ```javascript
@@ -117,14 +137,13 @@ duration | integer | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
   "data": [
       {
         "id": 787, 
-        "payout": 77000000, 
-        "stake": 770000000, 
+        "payout": 777.5, 
+        "stake": 77000, 
         "energy": 1000000, 
         "price": "45 SUN/Day", 
-        "apy": "20%", 
-        "duration": "7 days", 
-        "active": true,
-        "status": "new",
+        "apy": "77%", 
+        "duration": "7 days",
+        "rawduration": 201600,
         "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
       }
       ...
@@ -135,7 +154,7 @@ duration | integer | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
 ```
 GET /api/v1/status/[orderId]
 ```
-This endpoint returns the status of order.
+This endpoint returns the status ('active', 'filled', 'canceled') of order.
 
 **Parameters:**
 Name | Type | Mandatory | Description
@@ -145,16 +164,16 @@ orderId | STRING | YES |  Order Id.
 **Response:**
 ```javascript
 {
-  "id": 787, 
-  "payout": 77000000, 
-  "stake": 770000000, 
-  "energy": 1000000, 
-  "price": "45 SUN/Day", 
-  "apy": "20%", 
-  "duration": "7 days", 
-  "active": true,
-  "status": "filled",
-  "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
+        "id": 787, 
+        "payout": 777.5, 
+        "stake": 77000, 
+        "energy": 1000000, 
+        "price": "45 SUN/Day", 
+        "apy": "77%", 
+        "duration": "7 days",
+        "rawduration": 201600,
+        "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru",
+        "status": "active"
 }
 ```
 
