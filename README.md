@@ -61,6 +61,25 @@ NONE
 ```javascript
 {"time": 1695219834}
 ```
+### Minimal prices
+```
+GET /api/v1/minprices
+```
+
+
+**Parameters:**
+NONE
+
+**Response:**
+```javascript
+{
+  "time": 1695219834,
+  "minprices": {
+      "1200":30,
+      "7200":30
+    },
+}
+```
 
 ## Market Data endpoints
 ###  Order List. 
