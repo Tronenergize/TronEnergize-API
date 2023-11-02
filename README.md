@@ -278,7 +278,7 @@ Parameter | Value
     ```
 
 
-### Create Order.
+### Create Order and pay from internal wallet.
 ```
 POST /api/v1/order
 ```
