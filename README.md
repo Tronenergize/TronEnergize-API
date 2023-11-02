@@ -195,11 +195,126 @@ orderid | STRING | YES |  Order Id.
         "status": "active"
 }
 ```
+# Authentication
+Authenticating to the TronEnergize API requires a valid API Key.
+Your API Key identifies your account (think of it as a username) and the API Secret authenticates your account (think of it as a password). Please follow the instructions below to secure your API Key and API Secret:
+
+* Do not send your API Secret with your API requests. Only send the API Key.
+* Do not share your API Secret or the API Key with anyone.
+* Do not commit your API Secret into source control systems like github.
+* If you lose your API Key or Secret, immediately contact Tronenergize support.
+
+Please take note that if your API Secret is compromised, your funds are at risk.
+
+# Endpoint security type
+* Each next endpoint has a security type that determines how you will
+  interact with it. This is stated next to the NAME of the endpoint.
+* If no security type is stated, assume the security type is NONE.
+* API-keys are passed into the Rest API via the `X-TR-APIKEY` header.
+* API-keys and secret-keys **are case sensitive**.
+
+# SIGNED Endpoint security
+* `SIGNED` endpoints require an additional parameter, `signature`, to be sent in the  `query string` or `request body`.
+* The `signature` is **not case sensitive**.
+
+## Timing security
+* A `SIGNED` endpoint also requires a parameter, `timestamp`, to be sent which
+  should be the second timestamp of when the request was created and sent.
+  
+## Request signing
+Authenticated calls require you to send a request signature with every request. This signature should be re-generated for every request.
+
+### Example API Key/API Secret: 
+Key | Value
+------------ | ------------
+`apiKey` | API_my6mqen60xpwnewo2efckxtz
+`secretKey` | S2808_61xkvn_bprxy5_s3szia
+
+## SIGNED Endpoint Examples for POST /api/v1/order
+
+Here is a step-by-step example of how to send a valid signed payload from the
+Linux command line using `echo`, `openssl`, and `curl`.
 
 
+Parameter | Value
+------------ | ------------
+`receiver` | TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+`energyamount` | 32000
+`price` | 35
+`duration` | 1d
+`timestamp` | 1695219834
+
+#### Example 1: As a request body
+* **requestBody:** receiver=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t&energyamount=32000&price=35&duration=1d&timestamp=1695219834
+* **HMAC SHA256 signature:**
+
+    ```
+    [linux]$ echo -n "receiver=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t&energyamount=32000&price=35&duration=1d&timestamp=1695219834" | openssl dgst -sha256 -hmac "S2808_61xkvn_bprxy5_s3szia"
+    (stdin)= 4e79a51a5bb2df5d3b894095d27d994c02f9f7705bc95eb4e4296b08b0af35fb
+    ```
 
 
+* **curl command:**
+
+    ```
+    (HMAC SHA256)
+    [linux]$ curl -H "X-TR-APIKEY: API_my6mqen60xpwnewo2efckxtz" -X POST 'https://nile.tronenergize.com/api/v1/order' -d 'receiver=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t&energyamount=32000&price=35&duration=1d&timestamp=1695219834&signature=4e79a51a5bb2df5d3b894095d27d994c02f9f7705bc95eb4e4296b08b0af35fb'
+    ```
+
+#### Example 2: As a query string
+* **queryString:** receiver=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t&energyamount=32000&price=35&duration=1d&timestamp=1695219834
+* **HMAC SHA256 signature:**
+
+    ```
+    [linux]$ echo -n "receiver=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t&energyamount=32000&price=35&duration=1d&timestamp=1695219834" | openssl dgst -sha256 -hmac "S2808_61xkvn_bprxy5_s3szia"
+    (stdin)= 4e79a51a5bb2df5d3b894095d27d994c02f9f7705bc95eb4e4296b08b0af35fb
+    ```
+
+* **curl command:**
+
+    ```
+    (HMAC SHA256)
+    [linux]$ curl -H "X-TR-APIKEY: API_my6mqen60xpwnewo2efckxtz" -X GET 'https://nile.tronenergize.com/api/v1/order?receiver=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t&energyamount=32000&price=35&duration=1d&timestamp=1695219834&signature=4e79a51a5bb2df5d3b894095d27d994c02f9f7705bc95eb4e4296b08b0af35fb'
+    ```
 
 
+### Create Order.
+```
+POST /api/v1/order
+```
 
+**HEADERS:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+X-TR-APIKEY | STRING | YES |  Your API Key
 
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+buyer | STRING | YES |  Resource purchase address
+receiver | STRING | YES |  Resource receiving address
+energyamount | integer | YES |  Energy amount in SUN
+price | integer | YES |  Minimum 30
+duration | STRING | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
+timestamp | integer | YES |  Current timestamp in seconds
+signature | STRING | YES |  HMAC SHA256 signature
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data": [
+      {
+        "id": 787, 
+        "payout": 777.5, 
+        "stake": 77000, 
+        "energy": 1000000, 
+        "price": "45 SUN/Day", 
+        "apy": "77%", 
+        "duration": "7 days",
+        "rawduration": 201600,
+        "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
+      }
+      ...
+    ]
+```
