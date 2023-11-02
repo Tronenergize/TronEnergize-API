@@ -291,7 +291,6 @@ X-TR-APIKEY | STRING | YES |  Your API Key
 **Parameters:**
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-buyer | STRING | YES |  Resource purchase address
 receiver | STRING | YES |  Resource receiving address
 energyamount | integer | YES |  Energy amount in SUN
 price | integer | YES |  Minimum 30
