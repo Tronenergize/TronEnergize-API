@@ -40,6 +40,7 @@ Code | Cause | Solution
 444 | Data does not exist | 
 500 | Operation failed. Please try again later | 
 502 | Insufficient balance | 
+505 | Inactivated address | 
 
 ## General Information on Endpoints
 * For `GET` endpoints, parameters must be sent as a `query string`.
