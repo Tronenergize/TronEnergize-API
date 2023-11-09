@@ -233,7 +233,7 @@ Please take note that if your API Secret is compromised, your funds are at risk.
 * API-keys and secret-keys **are case sensitive**.
 
 # SIGNED Endpoint security
-* `SIGNED` endpoints require an additional parameter, `signature`, to be sent in the  `query string` or `request body`.
+* `SIGNED` endpoints require an additional parameter, `signature`, to be sent in the  `query string` or `request body` or `HEADERS`.
 * The `signature` is **not case sensitive**.
 
 ## Timing security
@@ -306,6 +306,7 @@ POST /api/v1/order
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 X-TR-APIKEY | STRING | YES |  Your API Key
+
 
 **Parameters:**
 Name | Type | Mandatory | Description
