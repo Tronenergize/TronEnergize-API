@@ -81,6 +81,21 @@ NONE
     },
 }
 ```
+### Available Energy
+```
+GET /api/v1/available
+```
+
+**Parameters:**
+NONE
+
+**Response:**
+```javascript
+{
+  "time": 1695219834,
+  "data": 50000000
+}
+```
 
 ## Market Data endpoints
 ###  Order List. 
