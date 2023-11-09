@@ -74,7 +74,7 @@ NONE
 ```javascript
 {
   "time": 1695219834,
-  "minprices": {
+  "data": {
       "1200":30,
       "7200":30
     },
@@ -153,8 +153,7 @@ txid | STRING | YES |  Signed and Broadcasted Transaction Hash
 ```javascript
 {
   "time": 1596477571, 
-  "data": [
-      {
+  "data": {
         "id": 787, 
         "payout": 777.5, 
         "stake": 77000, 
@@ -165,8 +164,7 @@ txid | STRING | YES |  Signed and Broadcasted Transaction Hash
         "rawduration": 201600,
         "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
       }
-      ...
-    ]
+}
 ```
 
 ###  Status of order.
@@ -183,6 +181,8 @@ orderid | STRING | YES |  Order Id.
 **Response:**
 ```javascript
 {
+  "time": 1596477571, 
+  "data": {
         "id": 787, 
         "payout": 777.5, 
         "stake": 77000, 
@@ -193,6 +193,7 @@ orderid | STRING | YES |  Order Id.
         "rawduration": 201600,
         "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru",
         "status": "active"
+    }
 }
 ```
 # Authentication
@@ -302,8 +303,7 @@ signature | STRING | YES |  HMAC SHA256 signature
 ```javascript
 {
   "time": 1596477571, 
-  "data": [
-      {
+  "data":{
         "id": 787, 
         "payout": 777.5, 
         "stake": 77000, 
@@ -314,6 +314,5 @@ signature | STRING | YES |  HMAC SHA256 signature
         "rawduration": 201600,
         "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
       }
-      ...
-    ]
+}
 ```
