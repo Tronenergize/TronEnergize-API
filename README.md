@@ -202,7 +202,7 @@ orderid | STRING | YES |  Order Id.
 ```javascript
 {
   "time": 1596477571, 
-  "data": {
+  "data": [{
         "id": 787, 
         "payout": 777.5, 
         "stake": 77000, 
@@ -213,7 +213,7 @@ orderid | STRING | YES |  Order Id.
         "rawduration": 201600,
         "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru",
         "status": "active"
-    }
+    }]
 }
 ```
 # Authentication
@@ -330,9 +330,8 @@ signature | STRING | YES |  HMAC SHA256 signature
         "stake": 77000, 
         "energy": 1000000, 
         "price": "45 SUN/Day", 
-        "apy": "77%", 
         "duration": "7 days",
-        "rawduration": 201600,
+        "txid": "8b317f47d79547a2...24cc6317d84d9",
         "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
       }
 }
