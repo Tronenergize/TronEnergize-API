@@ -212,7 +212,14 @@ orderid | STRING | YES |  Order Id.
         "duration": "7 days",
         "rawduration": 201600,
         "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru",
-        "status": "active"
+        "status": "active",
+        "delegations": [
+                         {
+                           "txid": "7089e44e52e...513eba2bdfa78",
+                           "energy": 1000000,
+                         },
+                         ...
+                       ]
     }]
 }
 ```
