@@ -147,8 +147,10 @@ duration | STRING | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
 ```javascript
 {
   "time": 1596477571, 
-  "data":{"visible": false, "txID": "6debe75130870086575f90792f.. ..f8aa9b031"},
-  "amount": 1.28}
+  "data":{
+           "tx": {"visible": false, "txID": "6debe75130870086575f90792f.. ..f8aa9b031"},
+           "amount": 1.28
+         }
 }
 ```
 
