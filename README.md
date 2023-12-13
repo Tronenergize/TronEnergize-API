@@ -1,5 +1,27 @@
 # TronEnergize Public Rest API
+## TronEnergize Public Rest API Overview:
 
+TronEnergize Public Rest API provides developers with a powerful toolset to interact programmatically with the TronEnergize energy marketplace. This API allows users to access essential market data, manage energy orders, and perform trading operations.
+
+## Key Features:
+
+- Market Data: Retrieve minimal prices and available energy to make informed decisions.
+- Order Management: View a list of active orders, create orders, and check the status of existing ones.
+- Trading Operations: Create unsigned RAW transactions for BUY orders, create and pay orders from internal wallets.
+
+## Authentication:
+
+Secure your transactions with API Key and Secret for authentication.
+
+## HTTP Return Codes:
+
+Easily interpret responses with clear HTTP return codes and error messages.
+
+## Ease of Use:
+
+JSON responses make integration seamless, allowing developers to build customized interfaces and automate buying processes.
+
+Explore the TronEnergize API to enhance your experience in the Tron energy market!
 
 ## General API Information
 * The base endpoint is: **https://tronenergize.com/**
