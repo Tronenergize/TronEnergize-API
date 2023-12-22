@@ -109,7 +109,9 @@ GET /api/v1/available
 ```
 
 **Parameters:**
-NONE
+Name | value | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+filter | 'yes' | NO |  Return of filtered available energy
 
 **Response:**
 ```javascript
