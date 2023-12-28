@@ -165,7 +165,7 @@ Name | Type | Mandatory | Description
 buyer | STRING | YES |  Resource purchase address
 energyamount | integer | YES |  Energy amount in SUN
 price | integer | YES |  Minimum 30
-duration | STRING | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
+duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 
 **Response:**
 ```javascript
@@ -190,7 +190,7 @@ buyer | STRING | YES |  Resource purchase address
 receiver | STRING | YES |  Resource receiving address
 energyamount | integer | YES |  Energy amount in SUN
 price | integer | YES |  Minimum 30
-duration | STRING | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
+duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 txid | STRING | YES |  Signed and Broadcasted Transaction Hash
 
 **Response:**
@@ -347,7 +347,7 @@ Name | Type | Mandatory | Description
 receiver | STRING | YES |  Resource receiving address
 energyamount | integer | YES |  Energy amount in SUN
 price | integer | YES |  Minimum 30
-duration | STRING | YES |  1d, 3d, 7d, 14d, 1h and 6h are supported
+duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 timestamp | integer | YES |  Current timestamp in seconds
 signature | STRING | YES |  HMAC SHA256 signature
 
