@@ -367,4 +367,34 @@ signature | STRING | YES |  HMAC SHA256 signature
       }
 }
 ```
+### Remove the Order.
+```
+POST /api/v1/removeorder
+```
+
+**HEADERS:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+X-TR-APIKEY | STRING | YES |  Your API Key
+
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+receiver | STRING | YES |  Money receiving address
+orderid | integer | YES |  Order Id
+timestamp | integer | YES |  Current timestamp in seconds
+signature | STRING | YES |  HMAC SHA256 signature
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data":{
+        "id": 787, 
+        "txid": "8b317f47d79547a2...24cc6317d84d9",
+        "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
+      }
+}
+```
 
