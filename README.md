@@ -247,6 +247,33 @@ orderid | STRING | YES |  Order Id.
     }]
 }
 ```
+
+### Sell energy.
+```
+POST /api/v1/delegate
+```
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+orderid | STRING | YES |  Order Id
+sender | STRING | YES |  The address will receive payout 
+txid | STRING | YES |  Signed and Broadcasted Transaction Hash
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data": {
+        "amount": 777.5, 
+        "txid": "8b317f47d79547a2...24cc6317d84d9"
+      }
+}
+```
+
+
+
+
 # Authentication
 Authenticating to the TronEnergize API requires a valid API Key.
 Your API Key identifies your account (think of it as a username) and the API Secret authenticates your account (think of it as a password). Please follow the instructions below to secure your API Key and API Secret:
