@@ -260,6 +260,11 @@ orderid | STRING | YES |  Order Id
 sender | STRING | YES |  The address will receive payout 
 txid | STRING | YES |  Signed and Broadcasted Transaction Hash
 
+**How to get order_id ?**
+```
+GET /api/v1/market
+```
+
 **Response:**
 ```javascript
 {
