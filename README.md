@@ -163,7 +163,7 @@ GET /api/v1/neworder
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 buyer | STRING | YES |  Resource purchase address
-energyamount | integer | YES |  Energy amount in SUN
+energyamount | integer | YES |  Energy amount in SUN, minimum 32000
 price | integer | YES |  Minimum 35
 duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 
@@ -188,7 +188,7 @@ Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 buyer | STRING | YES |  Resource purchase address
 receiver | STRING | YES |  Resource receiving address
-energyamount | integer | YES |  Energy amount in SUN
+energyamount | integer | YES |  Energy amount in SUN, minimum 32000
 price | integer | YES |  Minimum 35
 duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 txid | STRING | YES |  Signed and Broadcasted Transaction Hash
@@ -377,7 +377,7 @@ X-TR-APIKEY | STRING | YES |  Your API Key
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 receiver | STRING | YES |  Resource receiving address
-energyamount | integer | YES |  Energy amount in SUN
+energyamount | integer | YES |  Energy amount in SUN, minimum 32000
 price | integer | YES |  Minimum 35
 duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 timestamp | integer | YES |  Current timestamp in seconds
