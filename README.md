@@ -84,7 +84,7 @@ NONE
 ```javascript
 {"time": 1695219834}
 ```
-### Minimal prices
+### Minimum prices
 ```
 GET /api/v1/minprices
 ```
