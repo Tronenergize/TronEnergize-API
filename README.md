@@ -276,7 +276,7 @@ When the order has been filled, TronEnergize will send a GET HTTP request with o
   ```
 * **GET HTTP request:**
   ```
-  GET https://github.com/webhook?id=187&payout=777.5&stake=77000&energy=1000000&price=45&rawduration=201600&receiver=TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru
+  GET https://github.com/webhook?id=187&payout=777.5&stake=77000&bandwidth=1000000&price=45&rawduration=201600&receiver=TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru
   ```
 
 **Response:**
@@ -448,7 +448,7 @@ Parameter | Value
     ```
 
 
-### Create Order and pay from internal wallet.
+### Create BUY ENERGY Order and pay from internal wallet.
 ```
 POST /api/v1/order
 ```
@@ -464,8 +464,8 @@ Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 receiver | STRING | YES |  Resource receiving address
 energyamount | integer | YES |  Energy amount in SUN, minimum 32000
-price | integer | YES |  Minimum 35
-duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
+price | integer | YES |  Minimum 45
+duration | STRING | YES |  5m, 1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 timestamp | integer | YES |  Current timestamp in seconds
 signature | STRING | YES |  HMAC SHA256 signature
 
@@ -485,6 +485,46 @@ signature | STRING | YES |  HMAC SHA256 signature
       }
 }
 ```
+
+
+### Create BUY BANDWIDTH Order and pay from internal wallet.
+```
+POST /api/v1/order
+```
+
+**HEADERS:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+X-TR-APIKEY | STRING | YES |  Your API Key
+
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+receiver | STRING | YES |  Resource receiving address
+bandwidthamount | integer | YES |  Bandwidth amount, minimum 2000
+price | integer | YES |  Minimum 600
+duration | STRING | YES |  5m, 1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
+timestamp | integer | YES |  Current timestamp in seconds
+signature | STRING | YES |  HMAC SHA256 signature
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data":{
+        "id": 787, 
+        "payout": 777.5, 
+        "stake": 77000, 
+        "bandwidth": 1000000, 
+        "price": "600", 
+        "duration": "7 days",
+        "txid": "8b317f47d79547a2...24cc6317d84d9",
+        "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
+      }
+}
+```
+
 ### Remove the Order.
 ```
 POST /api/v1/removeorder
