@@ -101,6 +101,10 @@ NONE
       "1200":35,
       "7200":35
     },
+  "bandwidth": {
+      "1200":600,
+      "7200":600
+    },
 }
 ```
 ### Available Energy
@@ -119,6 +123,7 @@ filter | 'yes' | NO |  Return of filtered available energy
   "time": 1695219834,
   "data": {
        "energy":50000000,
+       "bandwidth": 60000000
     }
 }
 ```
@@ -154,7 +159,7 @@ NONE
 ```
 
 ## Trading endpoints
-### Create unsigned RAW transaction for BUY Order.
+### Create unsigned RAW transaction for BUY ENERGY Order.
 ```
 GET /api/v1/neworder
 ```
@@ -164,8 +169,31 @@ Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 buyer | STRING | YES |  Resource purchase address
 energyamount | integer | YES |  Energy amount in SUN, minimum 32000
-price | integer | YES |  Minimum 35
-duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
+price | integer | YES |  Minimum 45
+duration | STRING | YES |  5m, 1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data":{
+           "tx": {"visible": false, "txID": "6debe75130870086575f90792f.. ..f8aa9b031"},
+           "amount": 1.28
+         }
+}
+```
+### Create unsigned RAW transaction for BUY BANDWIDTH Order.
+```
+GET /api/v1/neworder
+```
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+buyer | STRING | YES |  Resource purchase address
+bandwidthamount | integer | YES |  Bandwidth amount, minimum 2000
+price | integer | YES |  Minimum 600
+duration | STRING | YES |  5m, 1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 
 **Response:**
 ```javascript
@@ -178,7 +206,7 @@ duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 }
 ```
 
-### Create Order.
+### Create BUY ENERGY Order.
 ```
 POST /api/v1/neworder
 ```
@@ -189,8 +217,8 @@ Name | Type | Mandatory | Description
 buyer | STRING | YES |  Resource purchase address
 receiver | STRING | YES |  Resource receiving address
 energyamount | integer | YES |  Energy amount in SUN, minimum 32000
-price | integer | YES |  Minimum 35
-duration | STRING | YES |  1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
+price | integer | YES |  Minimum 45
+duration | STRING | YES |  5m, 1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
 txid | STRING | YES |  Signed and Broadcasted Transaction Hash
 webhook | STRING | NO |  Once the order has been filled, we will send event to your webhook url
 
@@ -216,6 +244,51 @@ When the order has been filled, TronEnergize will send a GET HTTP request with o
         "stake": 77000, 
         "energy": 1000000, 
         "price": "45 SUN/Day", 
+        "apy": "77%", 
+        "duration": "7 days",
+        "rawduration": 201600,
+        "receiver": "TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru"
+      }
+}
+```
+### Create BUY BANDWIDTH Order.
+```
+POST /api/v1/neworder
+```
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+buyer | STRING | YES |  Resource purchase address
+receiver | STRING | YES |  Resource receiving address
+bandwidthamount | integer | YES |  Bandwidth amount, minimum 2000
+price | integer | YES |  Minimum 600
+duration | STRING | YES |  5m, 1d, 3d, 7d, 14d, 30d, 1h and 6h are supported
+txid | STRING | YES |  Signed and Broadcasted Transaction Hash
+webhook | STRING | NO |  Once the order has been filled, we will send event to your webhook url
+
+**Webhook Example :**
+When the order has been filled, TronEnergize will send a GET HTTP request with order data. If your server is set up to listen for webhook deliveries at that URL, it can take action when it receives one.
+
+* **webhook:**
+  ```
+  https://github.com/webhook
+  ```
+* **GET HTTP request:**
+  ```
+  GET https://github.com/webhook?id=187&payout=777.5&stake=77000&energy=1000000&price=45&rawduration=201600&receiver=TLwpQv9N6uXZQeE4jUudLPjcRffbXXAuru
+  ```
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data": {
+        "id": 787, 
+        "payout": 777.5, 
+        "stake": 77000, 
+        "bandwidth": 1000000, 
+        "price": "600", 
         "apy": "77%", 
         "duration": "7 days",
         "rawduration": 201600,
