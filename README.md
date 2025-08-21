@@ -97,7 +97,7 @@ NONE
 ```javascript
 {
   "time": 1695219834,
-  "data": {
+  "energy": {
       "1200":35,
       "7200":35
     },
